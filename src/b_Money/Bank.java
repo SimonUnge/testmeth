@@ -137,8 +137,14 @@ public class Bank {
 	public void addTimedPayment(String accountid, String payid, Integer interval, Integer next, Money amount, Bank tobank, String toaccount) 
 		throws AccountDoesNotExistException
 	{
-		Account account = accountlist.get(accountid);
-		account.addTimedPayment(payid, interval, next, amount, tobank, toaccount);
+		if (!accountlist.containsKey(accountid)) {
+			throw new AccountDoesNotExistException();
+		}
+		else	
+		{
+			Account account = accountlist.get(accountid);
+			account.addTimedPayment(payid, interval, next, amount, tobank, toaccount);
+		}
 	}
 	
 	/**
@@ -146,9 +152,18 @@ public class Bank {
 	 * @param accountid Id of account to remove timed payment from
 	 * @param id Id of timed payment
 	 */
-	public void removeTimedPayment(String accountid, String id) {
-		Account account = accountlist.get(accountid);
-		account.removeTimedPayment(id);
+	public void removeTimedPayment(String accountid, String id) 
+		throws AccountDoesNotExistException
+	{
+			if (!accountlist.containsKey(accountid)) 
+			{
+				throw new AccountDoesNotExistException();
+			}
+			else	
+			{
+				Account account = accountlist.get(accountid);
+				account.removeTimedPayment(id);
+			}
 	}
 	
 	/**

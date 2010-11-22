@@ -126,7 +126,6 @@ public class BankTest {
 	
 	@Test
 	public void testTimedPayment() throws AccountDoesNotExistException {
-		/*
 		try
 		{
 			SweBank.addTimedPayment("Bobbbbbb", "rent", 30, 100, new Money(5000, SEK), DanskeBank, "Gertrud");
@@ -134,8 +133,17 @@ public class BankTest {
 		}
 		catch (AccountDoesNotExistException e)
 		{
+		}	
+		
+		try
+		{
+			SweBank.removeTimedPayment("Bobbbb","rent");
+			fail("Should not get here.");
 		}
-		*/
+		catch (AccountDoesNotExistException e)
+		{
+		}
+		
 		SweBank.addTimedPayment("Bob", "rent", 30, 100, new Money(5000, SEK), DanskeBank, "Gertrud");
 		SweBank.removeTimedPayment("Bob", "rent");
 	}
