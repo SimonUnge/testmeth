@@ -25,6 +25,7 @@ public class Currency {
 	 * @return The value of amount in the "universal currency"
 	 */
 	public Integer universalValue(Integer amount) {
+		// We cast to int to get rid of the decimal point.
 		return (int)(amount * rate);
 	}
 

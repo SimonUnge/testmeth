@@ -37,6 +37,7 @@ public class Money implements Comparable {
 	 *  @return String representing the amount of Money.
 	 */
 	public String toString() {
+		// We cast to double to make sure we have a decimal point.
 		return (double)(amount / 100) + " " + currency.getName(); 
 	}
 	
@@ -45,8 +46,7 @@ public class Money implements Comparable {
 	 * @return The value of the Money in the "universal currency".
 	 */
 	public Integer universalValue() {
-		//return (int)(amount * currency.getRate());
-
+		//We use our currencys universal value.
 		return currency.universalValue(amount);
 	}
 	
@@ -56,6 +56,7 @@ public class Money implements Comparable {
 	 * @return A Boolean indicating if the two monies are equal.
 	 */
 	public Boolean equals(Money other) {
+		//They are equal if thier universal value is equal.
 		return (universalValue().equals(other.universalValue()));
 	}
 	
@@ -66,7 +67,7 @@ public class Money implements Comparable {
 	 * (Remember to convert the other Money before adding the amounts)
 	 */
 	public Money add(Money other) {
-		int newAmount = amount + currency.valueInThisCurrency(other.getAmount(), other.getCurrency());
+		int newAmount = amount +  currency.valueInThisCurrency(other.getAmount(), other.getCurrency());
 		return new Money(newAmount, currency);
 	}
 

@@ -53,7 +53,7 @@ public class MoneyTest {
 
 	@Test
 	public void testAdd() {
-		//assertEquals(SEK200, SEK100.add(EUR10));
+		//Test to see that making sure adding different currencies together works.
 		assertTrue(SEK200.equals(SEK100.add(EUR10)));
 		assertEquals(SEK200.getAmount(), SEK100.add(EUR10).getAmount());
 		assertEquals(SEK200.getCurrency(), SEK100.add(EUR10).getCurrency());
@@ -61,6 +61,7 @@ public class MoneyTest {
 
 	@Test
 	public void testSub() {
+		//Test to see that making sure subtracting different currencies together works.
 		assertEquals(SEK0.toString(), SEK100.sub(EUR10).toString());
 		assertEquals(SEK100.getAmount(), SEK200.sub(EUR10).getAmount());
 		assertEquals(SEK0.getAmount(), SEK100.sub(EUR10).getAmount());

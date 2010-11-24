@@ -38,6 +38,7 @@ public class BankTest {
 		{
 			SweBank.openAccount("Bob");
 			fail("Should not get here.");
+			// But we did! So, somethings wrong with open account.
 		}
 		catch (AccountExistsException e)
 		{
@@ -48,6 +49,8 @@ public class BankTest {
 
 	@Test
 	public void testDeposit() throws AccountDoesNotExistException {
+		// We got an exception even though Bob exists! If we deposit to an existing account, it should not throw.
+		// Let's look at deposit!
 		SweBank.deposit("Bob", new Money(10000, SEK));
 		Integer bal = SweBank.getBalance("Bob");
 		assertEquals(10000, bal);
@@ -67,6 +70,7 @@ public class BankTest {
 		SweBank.deposit("Bob", new Money(10000, SEK));
 		SweBank.withdraw("Bob", new Money(5000, SEK));
 		Integer newBal = SweBank.getBalance("Bob");
+		// We expected 5000 but got 15000! Let's look at deposit and withdraw!
 		assertEquals(5000, newBal);
 
 		try
@@ -107,6 +111,8 @@ public class BankTest {
 		
 		SweBank.transfer("Bob", "Ulrika", new Money(5000, SEK));
 		b = SweBank.getBalance("Bob");
+		// Expected 5000 but got 10000!
+		// Let's look at transfer! Starting with the method with the exact signature.
 		assertEquals(5000, b);
 		b = SweBank.getBalance("Ulrika");
 		assertEquals(5000, b);
@@ -126,6 +132,7 @@ public class BankTest {
 	
 	@Test
 	public void testTimedPayment() throws AccountDoesNotExistException {
+		// addTimedPayment does not seem to throw AccountDoesNotExistException!
 		try
 		{
 			SweBank.addTimedPayment("Bobbbbbb", "rent", 30, 100, new Money(5000, SEK), DanskeBank, "Gertrud");
@@ -134,7 +141,8 @@ public class BankTest {
 		catch (AccountDoesNotExistException e)
 		{
 		}	
-		
+
+		// removeTimedPayment does not seem to throw AccountDoesNotExistException!
 		try
 		{
 			SweBank.removeTimedPayment("Bobbbb","rent");

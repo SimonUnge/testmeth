@@ -51,6 +51,7 @@ public class AccountTest {
 		}
 		
 		a = testAccount.getBalance().getAmount();
+		// Expected 9900000 but got 9800000! Let's check the code for tick() too see if we can find some error!
 		assertEquals(10000000 - 100000, a);
 		a = SweBank.getBalance("Alice");
 		assertEquals(1000000 + 100000, a);
@@ -86,9 +87,6 @@ public class AccountTest {
 	
 	@Test
 	public void testGetBalance() {
-		//assertEquals(10, (new Money(10000000, SEK)).universalValue());
-		//assertEquals(10, testAccount.getBalance().universalValue());
-		//assertEquals(new Money(10000000, SEK), testAccount.getBalance());
 		assertTrue((new Money(10000000, SEK)).equals(testAccount.getBalance()));
 	}
 }

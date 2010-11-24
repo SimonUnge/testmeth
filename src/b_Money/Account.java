@@ -45,7 +45,8 @@ public class Account {
 	 */
 	public void tick() {
 		for (TimedPayment tp : timedpayments.values()) {
-			tp.tick(); // two ticks
+			// tp.tick(); tp.tick(); This is the bug! We should only tick once every tick!
+			tp.tick();
 		}
 	}
 	
